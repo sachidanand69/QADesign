@@ -169,31 +169,42 @@
   }
   
   .result-card__actions {
+    border-left: 1px solid grey; /* Left border */
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .save-btn {
-    background: none;
+    width: 20%;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    position: relative; /* Allows absolute positioning */
+    min-height: 100px; /* Adjustable height */
+    padding: 10px;
+    overflow: hidden; /* Prevents extra scrollbar */
+}
+
+/* Save button (Top-Right) */
+.result-card__actions .save-btn {
+    position: absolute;
+    background: transparent;
     border: none;
-    cursor: pointer;
-    padding: 6px;
-    transition: transform 0.2s;
-  }
+    top: 10px;
+    right: 10px;
+}
+
+/* Connect button (Centered) */
+.result-card__actions .connect-btn {
+    margin-top: auto;
+    border: 1px solid black;
+    width: 70%;
+    border-radius: 3px;
+    background: transparent;
+    height: 30px;
+    margin-bottom: 0px;
+}
+
+
   
   .save-btn:hover {
     transform: scale(1.1);
-  }
-  
-  .connect-btn {
-    background: #28a745;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s;
   }
   
   .connect-btn:hover {
