@@ -1,0 +1,52 @@
+/* Style the dropdown button */
+.btn-success {
+    background-color: #007bff !important; /* Change button color */
+    border: none !important;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #0056b3 !important;
+}
+
+/* Style the dropdown menu */
+.dropdown-menu {
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 180px;
+    border-radius: 5px;
+}
+
+/* Style dropdown items */
+.dropdown-item {
+    color: #333;
+    padding: 10px 15px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #f4f4f4;
+    color: #007bff;
+}
+
+/* Responsive dropdown adjustments */
+@media (max-width: 768px) {
+    .btn-success {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .dropdown-menu {
+        min-width: 160px;
+    }
+
+    .dropdown-item {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+}
