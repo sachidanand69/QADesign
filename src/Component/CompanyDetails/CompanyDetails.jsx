@@ -1,7 +1,14 @@
+import ReviewsPepoles from "../PeopleReviews/PeopleReviews";
 import ReviewComponent from "../Reviews/Review";
 import { companies } from "./CompanyData";
+import { useLocation } from "react-router-dom";
+
 export default function CompanyDetails() {
     companies[0].servicesOffered["Visa Services"].map((item)=>console.log(item))
+    const location = useLocation();
+    const services = location.state || {}
+    console.log(services)
+    
     return (
         <div style={{ position: 'relative', minHeight: '100vh' }}>
             {/* Cover Image */}
@@ -109,6 +116,7 @@ export default function CompanyDetails() {
             </div>
 
             <ReviewComponent ratings={companies[0].overallRatings}/>
+            <ReviewsPepoles/>
         </div>
     );
 }

@@ -1,8 +1,8 @@
 export const companies = [
     {
       companyName: "Tech Innovators Ltd",
-      city: "San Francisco",
-      country: "USA",
+      city: "Mumbai",
+      country: "India",
       description: "A leading tech company specializing in AI and cloud solutions.",
       yearOfEstablishment: 2005,
       countriesServiced: 20,
@@ -23,8 +23,8 @@ export const companies = [
     },
     {
       companyName: "Green Energy Corp",
-      city: "Berlin",
-      country: "Germany",
+      city: "Delhi",
+      country: "India",
       description: "Renewable energy solutions for a sustainable future.",
       yearOfEstablishment: 2010,
       countriesServiced: ["Germany", "France", "Italy", "Spain"],
@@ -37,7 +37,7 @@ export const companies = [
       address: "456 Renewable Ave, Berlin, Germany",
       workingHours: "Mon-Sat: 8 AM - 5 PM",
       about: "Committed to clean energy and a greener planet.",
-      servicesOffered: ["Solar Power", "Wind Energy", "Consulting"],
+      servicesOffered:{"Admission Services":["Tourist visa","Work Visa", "Student Visa","Shengan Visa"]},
       reviews: [
         { reviewer: "Alice Brown", comment: "Great eco-friendly solutions!", rating: 4.7 },
         { reviewer: "Tom Wilson", comment: "Reliable and professional.", rating: 4.3 }
@@ -45,8 +45,8 @@ export const companies = [
     },
     {
       companyName: "FinTech Solutions",
-      city: "London",
-      country: "UK",
+      city: "Pune",
+      country: "India",
       description: "Innovative financial technology for modern businesses.",
       yearOfEstablishment: 2012,
       countriesServiced: ["UK", "USA", "Australia"],
@@ -59,7 +59,7 @@ export const companies = [
       address: "789 Finance Road, London, UK",
       workingHours: "Mon-Fri: 9 AM - 7 PM",
       about: "Revolutionizing financial services with AI and blockchain.",
-      servicesOffered: ["Online Payments", "Blockchain Solutions", "Financial Analytics"],
+      servicesOffered: {"Insurance Services":["Tourist visa","Work Visa", "Student Visa","Shengan Visa"]},
       reviews: [
         { reviewer: "Mike Green", comment: "Top-notch fintech services!", rating: 4.8 },
         { reviewer: "Emma Johnson", comment: "Very efficient solutions.", rating: 4.5 }
@@ -67,8 +67,8 @@ export const companies = [
     },
     {
       companyName: "Global Logistics",
-      city: "Dubai",
-      country: "UAE",
+      city: "Kolkata",
+      country: "India",
       description: "Worldwide shipping and supply chain solutions.",
       yearOfEstablishment: 2000,
       countriesServiced: ["UAE", "India", "China", "USA"],
@@ -81,7 +81,7 @@ export const companies = [
       address: "Warehouse District, Dubai, UAE",
       workingHours: "24/7",
       about: "A trusted name in logistics and supply chain management.",
-      servicesOffered: ["Freight Forwarding", "Warehousing", "E-commerce Logistics"],
+      servicesOffered: {"Travel and Tourism":["Tourist visa","Work Visa", "Student Visa","Shengan Visa"]},
       reviews: [
         { reviewer: "David Carter", comment: "Very reliable service!", rating: 4.6 },
         { reviewer: "Sophia Lee", comment: "Great international shipping options.", rating: 4.4 }
@@ -103,7 +103,7 @@ export const companies = [
       address: "567 Health Ave, Toronto, Canada",
       workingHours: "Mon-Fri: 8 AM - 6 PM",
       about: "We bridge technology with healthcare for better patient outcomes.",
-      servicesOffered: ["AI Diagnostics", "Telemedicine", "Healthcare Analytics"],
+      servicesOffered: {"Other Services":["Tourist visa","Work Visa", "Student Visa","Shengan Visa"]},
       reviews: [
         { reviewer: "James White", comment: "Very useful medical AI tools!", rating: 4.9 },
         { reviewer: "Olivia Martin", comment: "Excellent telemedicine services.", rating: 4.7 }

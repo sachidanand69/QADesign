@@ -1,6 +1,8 @@
 import "./slidefilter.css";
-import { useState, useEffect } from "react";
+import {useState, useEffect, useRef} from "react";
 import { Save, SaveIcon } from "lucide-react"
+import { companies } from "../CompanyDetails/CompanyData";
+import { useNavigate } from "react-router-dom";
 
 const services = [
     "Visa Services",
@@ -11,11 +13,11 @@ const services = [
 ];
 
 const mockData = [
-    { id: 1, city: "Mumbai", service: "Visa Services", rating: 4, lat: 19.076, lon: 72.8777 },
-    { id: 2, city: "Delhi", service: "Admission Services", rating: 5, lat: 28.7041, lon: 77.1025 },
-    { id: 3, city: "Bangalore", service: "Insurance Services", rating: 3, lat: 12.9716, lon: 77.5946 },
-    { id: 4, city: "Chennai", service: "Travel and Tourism", rating: 2, lat: 13.0827, lon: 80.2707 },
-    { id: 5, city: "Kolkata", service: "Other Services", rating: 5, lat: 22.5726, lon: 88.3639 },
+    { id: 1, city: companies[0].city, service: Object.keys(companies[0].servicesOffered)[0], rating: 4, lat: 19.076, lon: 72.8777,company:companies[0]},
+    { id: 2, city: companies[1].city, service: Object.keys(companies[1].servicesOffered)[0], rating: 5, lat: 28.7041, lon: 77.1025,company:companies[1]},
+    { id: 3, city: companies[2].city, service: Object.keys(companies[2].servicesOffered)[0], rating: 3, lat: 12.9716, lon: 77.5946,company:companies[2]},
+    { id: 4, city: companies[3].city, service: Object.keys(companies[3].servicesOffered)[0], rating: 2, lat: 13.0827, lon: 80.2707,company:companies[3]},
+    { id: 5, city: companies[4].city, service: Object.keys(companies[4].servicesOffered)[0], rating: 5, lat: 22.5726, lon: 88.3639,company:companies[4]},
 ];
 
 export default function SliderFilter() {
@@ -26,13 +28,21 @@ export default function SliderFilter() {
     const [userCoords, setUserCoords] = useState(null);
     const [get, setget] = useState(false);
     const [get1, setget1] = useState(false);
+    const serviceTypeRef = useRef("");
+    const [ serviceTypeList, setServiceTypeList] =useState([]);
 
     const [saved, setSaved] = useState({});
+
+    console.log()
 
     const toggleSave = (id) => {
         setSaved((prev) => ({ ...prev, [id]: !prev[id] }));
     };
 
+    const navigate = useNavigate();
+    const handleNavigate = (item) => {
+        navigate("/companydetails", { state: item});
+      };
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
@@ -42,7 +52,7 @@ export default function SliderFilter() {
                     lon: position.coords.longitude,
                 });
             },
-            (error) => console.error("Error getting location:", error)
+            // (error) => console.("Error getting location:", error)
         );
     }, []);
 
@@ -72,17 +82,23 @@ export default function SliderFilter() {
 
     const clearFilter = (filter) => {
         if (filter === "location") setLocation("");
-        if (filter === "serviceType") setServiceType("");
+        if (filter === "serviceType") setServiceTypeList([]);
         if (filter === "rating") setRating("");
     };
+
+    // const filteredData = mockData.filter(
+    //     (item) =>
+    //         (!location || item.city.toLowerCase().includes(location.toLowerCase())) &&
+    //         (serviceType === "" || serviceTypeList.includes(item.service)) &&
+    //         (!rating || item.rating === Number(rating))
+    // );
 
     const filteredData = mockData.filter(
         (item) =>
             (!location || item.city.toLowerCase().includes(location.toLowerCase())) &&
-            (!serviceType || item.service === serviceType) &&
+            (serviceTypeList.length === 0 || serviceTypeList.includes(item.service)) &&
             (!rating || item.rating === Number(rating))
     );
-
     return (
         <div className="container">
             {/* Search Filters */}
@@ -107,13 +123,21 @@ export default function SliderFilter() {
                     {services.map((service) => (
                         <div key={service}>
                             <input
+                                // ref={serviceTypeRef}
                                 type="checkbox"
                                 id={service}
                                 name="serviceType"
                                 value={service}
-                                onClick={(e) => { if (get === true) { setServiceType(e.target.value); setget(false) } else { clearFilter("serviceType"); setget(true) } }}
-                                checked={serviceType === service}
-                                readOnly
+                                onChange={
+                                    (e) => {
+                                        let value = e.target.value;
+                                        setServiceTypeList((prevList) =>
+                                            prevList.includes(value)
+                                                ? prevList.filter((item) => item !== value)
+                                                : [...prevList, value]
+                                        );
+                                    }}
+                                checked={serviceTypeList.includes(service)}
                             />
                             <label htmlFor={service}>{service}</label>
                         </div>
@@ -125,7 +149,7 @@ export default function SliderFilter() {
                     {[1, 2, 3, 4, 5].map((num) => (
                         <label key={num} className="block mt-2">
                             <input
-                                type="checkbox"
+                                type="radio"
                                 name="rating"
                                 value={num}
                                 onChange={(e) => setRating(e.target.value)}
@@ -136,6 +160,8 @@ export default function SliderFilter() {
                         </label>
                     ))}
                 </div>
+
+                <button className="button">Search</button>
             </div>
 
 
@@ -144,7 +170,18 @@ export default function SliderFilter() {
                 {/* Selected Filters */}
                 <div className="selected-filters">
                     {location && <div className="filters" style={{ backgroundColor: "grey" }}><button onClick={() => clearFilter("location")}>✖</button> {location}</div>}
-                    {serviceType && <div className="filters"><button onClick={() => clearFilter("serviceType")}>✖</button> {serviceType}</div>}
+                    {
+                        serviceTypeList.length >0 &&
+                        (
+                            serviceTypeList.map((item)=>
+                                <div key={item} className="filters">
+                                    <button onClick={() => clearFilter("serviceType")}>
+                                        ✖
+                                    </button>
+                                    {item}</div>
+                            )
+                        )
+                    }
                     {rating && <div className="filters"><button onClick={() => clearFilter("rating")}>✖</button> {rating} Stars</div>}
                 </div>
                 <h2>Available Services</h2>
@@ -152,7 +189,7 @@ export default function SliderFilter() {
                     <p>No services found.</p>
                 ) : (
                     filteredData.map((item) => (
-                        <div key={item.id} className="result-card">
+                        <div key={item.id} className="result-card" onClick={()=>handleNavigate(item.company)}>
                             {/* Left: Image */}
                             <div className="result-card__image">
                                 <img src={item.image} alt={item.service} />
@@ -179,3 +216,4 @@ export default function SliderFilter() {
         </div>
     );
 }
+
