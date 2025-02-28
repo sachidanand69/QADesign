@@ -107,12 +107,13 @@ export default function SliderFilter() {
                     {services.map((service) => (
                         <div key={service}>
                             <input
-                                type="radio"
+                                type="checkbox"
                                 id={service}
                                 name="serviceType"
                                 value={service}
                                 onClick={(e) => { if (get === true) { setServiceType(e.target.value); setget(false) } else { clearFilter("serviceType"); setget(true) } }}
                                 checked={serviceType === service}
+                                readOnly
                             />
                             <label htmlFor={service}>{service}</label>
                         </div>
@@ -124,7 +125,7 @@ export default function SliderFilter() {
                     {[1, 2, 3, 4, 5].map((num) => (
                         <label key={num} className="block mt-2">
                             <input
-                                type="radio"
+                                type="checkbox"
                                 name="rating"
                                 value={num}
                                 onChange={(e) => setRating(e.target.value)}
@@ -135,8 +136,6 @@ export default function SliderFilter() {
                         </label>
                     ))}
                 </div>
-
-                <button className="button">Search</button>
             </div>
 
 

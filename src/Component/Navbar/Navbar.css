@@ -6,6 +6,7 @@
     top: 0%;
     display: flex;
     justify-content: space-between;
+    font-family: 'Poppins', sans-serif;
     /* position: relative; */
 }
   
@@ -27,6 +28,7 @@
     list-style: none;
     display: flex;
     gap: 20px;
+    margin-left: 35%;
   }
   
   .nav-links li a {
