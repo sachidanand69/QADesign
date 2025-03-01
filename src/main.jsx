@@ -12,10 +12,10 @@ import GetCompany from './Component/CompanyDetails/CompanyDetails.jsx'
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>
        <Routes>
-          <Route path='/' element={<Layout/>}>
-          <Route path='/stopwatch' element={<Stopwatch/>}/>
-          <Route path='/slidefilter' element={<SlideFilter/>}/>
-          <Route path='/companydetails' element={<GetCompany/>}/>
+          <Route path='/QADesign/' element={<Layout/>}>
+          <Route path='/QADesign/stopwatch' element={<Stopwatch/>}/>
+          <Route path='/QADesign/slidefilter' element={<SlideFilter/>}/>
+          <Route path='/QADesign/companydetails' element={<GetCompany/>}/>
           </Route>
        </Routes>
     </BrowserRouter>,
