@@ -149,7 +149,7 @@ export default function SliderFilter() {
                     {[1, 2, 3, 4, 5].map((num) => (
                         <label key={num} className="block mt-2">
                             <input
-                                type="radio"
+                                type="checkbox"
                                 name="rating"
                                 value={num}
                                 onChange={(e) => setRating(e.target.value)}
@@ -161,7 +161,7 @@ export default function SliderFilter() {
                     ))}
                 </div>
 
-                <button className="button">Search</button>
+                {/*<button className="button">Search</button>*/}
             </div>
 
 
@@ -197,13 +197,13 @@ export default function SliderFilter() {
 
                             {/* Middle: Content */}
                             <div className="result-card__content">
-                                <h3>{item.service}</h3>
-                                <p>City: {item.city}</p>
-                                <p>Rating: {item.rating} ⭐</p>
+                                <h3>{item.company.companyName}</h3>
+                                <p>City: {item.company.description}</p>
                             </div>
 
                             {/* Right: Buttons */}
                             <div className="result-card__actions">
+                            <p>Rating: {item.company.overallRatings} ⭐</p>
                                 <button className="save-btn" onClick={() => toggleSave(item.id)}>
                                     {saved[item.id] ? <SaveIcon size={20} color="#007bff" /> : <Save size={20} />}
                                 </button>

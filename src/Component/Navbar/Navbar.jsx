@@ -9,7 +9,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="container">
-        {/* Hamburger Menu */}
+        {/* Hamburger Menu (for mobile) */}
         <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <div className="bar"></div>
           <div className="bar"></div>
@@ -20,7 +20,7 @@ const Navbar = () => {
         <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
           <li><a href="#">Home</a></li>
           <li className="dropdown">
-            <Dropdowns/>
+            <Dropdowns />
           </li>
           <li><a href="#">Membership</a></li>
           <li><a href="#">Contact Us</a></li>
@@ -37,3 +37,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

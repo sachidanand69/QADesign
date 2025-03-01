@@ -9,7 +9,7 @@
   .search-box {
     width: 80%;
     background-color: #f3f4f6;
-    padding: 16px;
+    /* padding: 16px; */
     border-radius: 12px;
   }
   
@@ -33,48 +33,6 @@
   flex-direction: column;
   gap: 10px;
 }
-
-/* Hide default radio button */
-/* .radio-group input[type="radio"] {
-  opacity: 0;
-  position: absolute;
-} */
-
-/* Create custom square radio button */
-/* .radio-group label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  position: relative;
-  padding-left: 30px; 
-} */
-
-/* Square box */
-/* .radio-group label::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 12px;
-  height: 12px;
-  border: 2px solid #000306;
-  background-color: white;
-  transition: background-color 0.3s;
-} */
-
-/* Show tick mark when selected */
-/* .radio-group input[type="radio"]:checked + label::before {
-  content: "✔";
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  background-color: #000205;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
   
   .button {
     width: 100%;
@@ -102,7 +60,7 @@
   }
   
   .result-card {
-    padding: 12px;
+    /* padding: 12px; */
     width: 80%;
     border: 1px solid #ccc;
     border-radius: 6px;
@@ -124,7 +82,7 @@
   .filters{
     height: 10%;
     width: 40%;
-    padding: auto;
+    /* padding: auto; */
     border-radius: 10px;
     background-color: whitesmoke;
     color: black;
@@ -143,7 +101,7 @@
     padding: 12px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
     background: #fff;
-    margin-bottom: 12px;
+    /* margin-bottom: 12px; */
   }
   
   .result-card__image img {
@@ -213,4 +171,82 @@
   .connect-btn:hover {
     background: #218838;
   }
+  @media (max-width: 1023px) {
+    .container {
+      flex-direction: column;
+      /* align-items: center; */
+      padding: 16px;
+    }
   
+    .search-box {
+      width: 90%;
+    }
+  
+    .results {
+      width: 90%;
+    }
+  
+    .result-card {
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+    }
+  
+    .result-card__content {
+      text-align: left;
+    }
+  
+    .result-card__actions {
+      width: auto;
+    }
+  }
+  
+  /* For Mobile (Screen width ≤ 767px) */
+  @media (max-width: 767px) {
+    .container {
+      flex-direction: column;
+      padding: 12px;
+    }
+  
+    .search-box {
+      width: 100%;
+      padding: 12px;
+    }
+  
+    .results {
+      width: 100%;
+    }
+  
+    .result-card {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+    }
+  
+    .result-card__image img {
+      width: 60px;
+      height: 60px;
+    }
+  
+    .result-card__content {
+      text-align: left;
+    }
+  
+    .result-card__actions {
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-between;
+      padding-top: 10px;
+    }
+  
+    .result-card__actions .save-btn {
+      position: static;
+      width: auto;
+      height: 30px;
+      margin-right: 10px;
+    }
+  
+    .result-card__actions .connect-btn {
+      width: 50%;
+    }
+  }
