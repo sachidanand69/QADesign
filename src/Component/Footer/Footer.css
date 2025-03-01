@@ -13,7 +13,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 20px;
+    gap: 18.5%;
 }
 
 /* Footer Sections */
@@ -51,9 +51,10 @@
 }
 
 /* Social Icons */
-.social-icons span {
+.social-icons{
     margin-right: 10px;
     cursor: pointer;
+    gap: 25px;
     font-size: 14px;
 }
 

@@ -6,6 +6,7 @@ export const companies = [
       description: "A leading tech company specializing in AI and cloud solutions.",
       yearOfEstablishment: 2005,
       countriesServiced: 20,
+      image:"./src/assets/Images/image-2.png",
       overallRatings: [50, 30, 20, 10, 5],
       rating: 4.5,
       socialProfiles: [
@@ -15,7 +16,7 @@ export const companies = [
       businessDetails: "Tech Innovators Ltd is at the forefront of digital transformation.",
       address: "123 Tech Street, San Francisco, CA, USA",
       workingHours: "Mon-Fri: 9 AM - 6 PM",
-      about: "We build cutting-edge AI and cloud solutions for enterprises worldwide.",
+      about: "Tech Innovators Ltd, headquartered in Mumbai, is a leading technology company specializing in Artificial Intelligence (AI), cloud computing, and digital transformation solutions. With a strong commitment to innovation and excellence, we help businesses leverage cutting-edge technology to drive efficiency, scalability, and success.",
       servicesOffered: {"Visa Services":["Tourist visa","Work Visa", "Student Visa","Shengan Visa"]},
       reviews: [
         { reviewer: "John Doe", comment: "Excellent service!", rating: 5 },
@@ -29,6 +30,7 @@ export const companies = [
       description: "Renewable energy solutions for a sustainable future.",
       yearOfEstablishment: 2010,
       countriesServiced: ["Germany", "France", "Italy", "Spain"],
+      image:"./src/assets/Images/image-3.png",
       overallRatings: [50, 30, 20, 10, 5],
       rating: 3,
       socialProfiles: [
@@ -52,6 +54,7 @@ export const companies = [
       description: "Innovative financial technology for modern businesses.",
       yearOfEstablishment: 2012,
       countriesServiced: ["UK", "USA", "Australia"],
+      image:"./src/assets/Images/image-4.png",
       overallRatings: [50, 30, 20, 10, 5],
       rating: 3.5,
       socialProfiles: [
@@ -75,6 +78,7 @@ export const companies = [
       description: "Worldwide shipping and supply chain solutions.",
       yearOfEstablishment: 2000,
       countriesServiced: ["UAE", "India", "China", "USA"],
+      image:"./src/assets/Images/image-5.png",
       overallRatings: [50, 30, 20, 10, 5],
       rating: 2.5,
       socialProfiles: [
@@ -98,6 +102,7 @@ export const companies = [
       description: "Healthcare technology solutions for hospitals and clinics.",
       yearOfEstablishment: 2015,
       countriesServiced: ["Canada", "USA", "Australia"],
+      image:"./src/assets/Images/image-6.png",
       overallRatings: [50, 30, 20, 10, 5],
       rating: 5,
       socialProfiles: [

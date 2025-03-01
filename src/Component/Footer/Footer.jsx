@@ -10,9 +10,15 @@ const Footer = () => {
             Connecting you with reliable local agents for all your travel abroad needs.
           </p>
           <div className="social-icons">
-            <span>🔗 Instagram</span>
-            <span>🔗 Facebook</span>
-            <span>🔗 X</span>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+              <img src="./src/assets/Images/linkedin.png" alt="LinkedIn" width="34" style={{ verticalAlign: "middle" }} />
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <img src="./src/assets/Images/twit.png" alt="Twitter" width="34" style={{ verticalAlign: "middle" }} />
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+              <img src="./src/assets/Images/facebook.png" alt="Facebook" width="34" style={{ verticalAlign: "middle" }} />
+            </a>
           </div>
         </div>
 
@@ -41,21 +47,26 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-
       {/* Bottom Section */}
-      <div className="footer-bottom">
-        <p>© All rights reserved. Made by Quickassist Online Services Pvt. Ltd.</p>
-        <div className="payment-methods">
-          <span>VISA</span>
-          <span>MasterCard</span>
-          <span>PayPal</span>
-          <span>GPay</span>
+      <div className="footer-bottom" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 20px" }}>
+        {/* Left-aligned copyright text */}
+        <p style={{ margin: 0, textAlign: "left", flex: "1" }}>
+          © All rights reserved. Made by Quickassist Online Services Pvt. Ltd.
+        </p>
+
+        {/* Right-aligned payment logos */}
+        <div className="payment-methods" style={{ flex: "1", display: "flex", justifyContent: "flex-start", marginLeft:"30%"}}>
+          <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+            <img src="./src/assets/Images/visa.png" alt="Visa" style={{ width: "60px", height: "auto" }} />
+            <img src="./src/assets/Images/mastercard.png" alt="MasterCard" style={{ width: "60px", height: "auto" }} />
+            <img src="./src/assets/Images/paypal.png" alt="PayPal" style={{ width: "60px", height: "auto" }} />
+          </div>
         </div>
       </div>
+
     </footer>
   );
 };
 
 export default Footer;
 
-  

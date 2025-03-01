@@ -170,14 +170,14 @@ export default function SliderFilter() {
                     <p>No services found.</p>
                 ) : (
                     filteredData.map((item) => (
-                        <div key={item.id} className="result-card" onClick={() => handleNavigate(item.company)}>
+                        <div key={item.id} className="result-card">
                             {/* Left: Image */}
-                            <div className="result-card__image">
-                                <img src={item.image} alt={item.service} />
+                            <div className="result-card__image" onClick={() => handleNavigate(item.company)} style={{cursor:"pointer"}}>
+                                <img src={item.company.image} alt={item.service} />
                             </div>
 
-                            <div className="result-card__content">
-                                <h3>{item.company.companyName}</h3>
+                            <div className="result-card__content" onClick={() => handleNavigate(item.company)} style={{cursor:"pointer"}}>
+                                <h3 >{item.company.companyName}</h3>
                                 <p>City: {item.company.city}</p>
                                 <p>{item.company.description}</p>
                             </div>

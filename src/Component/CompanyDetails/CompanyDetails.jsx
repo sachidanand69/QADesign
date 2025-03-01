@@ -3,6 +3,7 @@ import ReviewComponent from "../Reviews/Review";
 import { companies } from "./CompanyData";
 import { useLocation } from "react-router-dom";
 
+
 export default function CompanyDetails() {
     const location = useLocation();
     const services = location.state || {};
@@ -12,7 +13,7 @@ export default function CompanyDetails() {
             {/* Cover Image */}
             <div style={{ height: '33vh', width: '100%', backgroundColor: '#ccc' }}>
                 <img
-                    src="#"
+                    src="./src/assets/Images/image-1.jpg"
                     alt="Cover"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
@@ -25,7 +26,7 @@ export default function CompanyDetails() {
                     <div style={styles.logoContainer}>
                         <div style={styles.logo}>
                             <img
-                                src="#"
+                                src={services.image}
                                 alt="Company Logo"
                                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                             />
@@ -60,26 +61,35 @@ export default function CompanyDetails() {
                     </div>
                     <div>
                         <h4 style={styles.infoTitle}>Social Media</h4>
-                        <p>📘 📷 🐦 💼</p>
+                        <div style={{ display: "flex", alignItems: "center", gap: "10px" , marginLeft:"30px"}}>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                                <img src="./src/assets/Images/linkedin.png" alt="LinkedIn" width="34" style={{ verticalAlign: "middle" }} />
+                            </a>
+                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                                <img src="./src/assets/Images/twit.png" alt="Twitter" width="34" style={{ verticalAlign: "middle" }} />
+                            </a>
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                                <img src="./src/assets/Images/facebook.png" alt="Facebook" width="34" style={{ verticalAlign: "middle" }} />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* About Section */}
-            <div style={styles.sectionContainer}>
-                <h2>About This Company</h2>
-                <p>{services.about}</p>
-            </div>
+            <h2 style={{ textAlign: "left", marginLeft: "10%", width: "80%" }}>About This Company</h2>
+            <p style={{ textAlign: "center", maxWidth: "80%", margin: "0 auto" }}>{services.about}</p>
 
             {/* Visa Services Section */}
-            <div style={styles.sectionContainer}>
-                <h2>{Object.keys(services.servicesOffered)[0]}</h2>
-                <ul style={styles.list}>
-                    {companies[0].servicesOffered["Visa Services"].map((item) => (
-                        <li key={item}>{item}</li>
-                    ))}
-                </ul>
-            </div>
+            <h2 style={{ textAlign: "left", marginLeft: "10%", width: "80%" }}>
+            {Object.keys(services.servicesOffered)[0]}
+          </h2>
+          <ul style={{ marginLeft: "10%", width: "80%" }}>
+            {companies[0].servicesOffered["Visa Services"].map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+          
 
             <ReviewComponent ratings={companies[0].overallRatings} />
             <ReviewsPepoles />
