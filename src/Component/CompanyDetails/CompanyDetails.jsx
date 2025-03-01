@@ -56,7 +56,7 @@ export default function CompanyDetails() {
                     </div>
                     <div>
                         <h4 style={styles.infoTitle}>Rating</h4>
-                        <p>4.5 ⭐</p>
+                        <p>{services.rating} ⭐</p>
                     </div>
                     <div>
                         <h4 style={styles.infoTitle}>Social Media</h4>

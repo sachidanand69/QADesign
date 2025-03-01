@@ -28,7 +28,7 @@ const Navbar = () => {
         
         {/* Right Side Profile Logo and Button */}
         <div className="profile-section">
-          <img src="/profile-icon.png" alt="Profile" className="profile-icon" />
+          <img src="#" alt="Profile" className="profile-icon" />
           <button className="join-button">Join Our Network</button>
         </div>
       </div>

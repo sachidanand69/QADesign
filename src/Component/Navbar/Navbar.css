@@ -27,7 +27,7 @@
   list-style: none;
   display: flex;
   gap: 20px;
-  margin-left: auto;
+  margin-left: 30%;
 }
 
 .nav-links li a {
@@ -46,6 +46,8 @@
 /* Dropdown */
 .dropdown {
   position: relative;
+  margin-top: 5px;
+  font-weight: bold;
 }
 
 .dropdown-menu {

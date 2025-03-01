@@ -7,6 +7,7 @@ export const companies = [
       yearOfEstablishment: 2005,
       countriesServiced: 20,
       overallRatings: [50, 30, 20, 10, 5],
+      rating: 4.5,
       socialProfiles: [
         { logo: "facebook.png", anchor: "Facebook", path: "https://facebook.com/techinnovators" },
         { logo: "twitter.png", anchor: "Twitter", path: "https://twitter.com/techinnovators" }
@@ -28,7 +29,8 @@ export const companies = [
       description: "Renewable energy solutions for a sustainable future.",
       yearOfEstablishment: 2010,
       countriesServiced: ["Germany", "France", "Italy", "Spain"],
-      overallRatings: 4.5,
+      overallRatings: [50, 30, 20, 10, 5],
+      rating: 3,
       socialProfiles: [
         { logo: "linkedin.png", anchor: "LinkedIn", path: "https://linkedin.com/greenenergy" },
         { logo: "instagram.png", anchor: "Instagram", path: "https://instagram.com/greenenergy" }
@@ -50,7 +52,8 @@ export const companies = [
       description: "Innovative financial technology for modern businesses.",
       yearOfEstablishment: 2012,
       countriesServiced: ["UK", "USA", "Australia"],
-      overallRatings: 4.6,
+      overallRatings: [50, 30, 20, 10, 5],
+      rating: 3.5,
       socialProfiles: [
         { logo: "twitter.png", anchor: "Twitter", path: "https://twitter.com/fintechsolutions" },
         { logo: "youtube.png", anchor: "YouTube", path: "https://youtube.com/fintechsolutions" }
@@ -72,7 +75,8 @@ export const companies = [
       description: "Worldwide shipping and supply chain solutions.",
       yearOfEstablishment: 2000,
       countriesServiced: ["UAE", "India", "China", "USA"],
-      overallRatings: 4.4,
+      overallRatings: [50, 30, 20, 10, 5],
+      rating: 2.5,
       socialProfiles: [
         { logo: "linkedin.png", anchor: "LinkedIn", path: "https://linkedin.com/globallogistics" },
         { logo: "facebook.png", anchor: "Facebook", path: "https://facebook.com/globallogistics" }
@@ -94,7 +98,8 @@ export const companies = [
       description: "Healthcare technology solutions for hospitals and clinics.",
       yearOfEstablishment: 2015,
       countriesServiced: ["Canada", "USA", "Australia"],
-      overallRatings: 4.7,
+      overallRatings: [50, 30, 20, 10, 5],
+      rating: 5,
       socialProfiles: [
         { logo: "instagram.png", anchor: "Instagram", path: "https://instagram.com/healthtech" },
         { logo: "youtube.png", anchor: "YouTube", path: "https://youtube.com/healthtech" }

@@ -1,6 +1,6 @@
 import "./slidefilter.css";
-import {useState, useEffect, useRef} from "react";
-import { Save, SaveIcon } from "lucide-react"
+import { useState, useEffect, useRef } from "react";
+import { Save, SaveIcon } from "lucide-react";
 import { companies } from "../CompanyDetails/CompanyData";
 import { useNavigate } from "react-router-dom";
 
@@ -13,36 +13,25 @@ const services = [
 ];
 
 const mockData = [
-    { id: 1, city: companies[0].city, service: Object.keys(companies[0].servicesOffered)[0], rating: 4, lat: 19.076, lon: 72.8777,company:companies[0]},
-    { id: 2, city: companies[1].city, service: Object.keys(companies[1].servicesOffered)[0], rating: 5, lat: 28.7041, lon: 77.1025,company:companies[1]},
-    { id: 3, city: companies[2].city, service: Object.keys(companies[2].servicesOffered)[0], rating: 3, lat: 12.9716, lon: 77.5946,company:companies[2]},
-    { id: 4, city: companies[3].city, service: Object.keys(companies[3].servicesOffered)[0], rating: 2, lat: 13.0827, lon: 80.2707,company:companies[3]},
-    { id: 5, city: companies[4].city, service: Object.keys(companies[4].servicesOffered)[0], rating: 5, lat: 22.5726, lon: 88.3639,company:companies[4]},
+    { id: 1, city: companies[0].city, service: Object.keys(companies[0].servicesOffered)[0], rating: companies[0].rating, lat: 19.076, lon: 72.8777, company: companies[0] },
+    { id: 2, city: companies[1].city, service: Object.keys(companies[1].servicesOffered)[0], rating: companies[1].rating, lat: 28.7041, lon: 77.1025, company: companies[1] },
+    { id: 3, city: companies[2].city, service: Object.keys(companies[2].servicesOffered)[0], rating: companies[2].rating, lat: 12.9716, lon: 77.5946, company: companies[2] },
+    { id: 4, city: companies[3].city, service: Object.keys(companies[3].servicesOffered)[0], rating: companies[3].rating, lat: 13.0827, lon: 80.2707, company: companies[3] },
+    { id: 5, city: companies[4].city, service: Object.keys(companies[4].servicesOffered)[0], rating: companies[4].rating, lat: 22.5726, lon: 88.3639, company: companies[4] },
 ];
 
 export default function SliderFilter() {
     const [location, setLocation] = useState("");
     const [distance, setDistance] = useState("");
-    const [serviceType, setServiceType] = useState("");
-    const [rating, setRating] = useState("");
+    const [serviceTypeList, setServiceTypeList] = useState([]);
+    const [rating, setRating] = useState([]); // Ensure this stores numbers
     const [userCoords, setUserCoords] = useState(null);
-    const [get, setget] = useState(false);
-    const [get1, setget1] = useState(false);
-    const serviceTypeRef = useRef("");
-    const [ serviceTypeList, setServiceTypeList] =useState([]);
-
     const [saved, setSaved] = useState({});
-
-    console.log()
-
-    const toggleSave = (id) => {
-        setSaved((prev) => ({ ...prev, [id]: !prev[id] }));
-    };
 
     const navigate = useNavigate();
     const handleNavigate = (item) => {
-        navigate("/companydetails", { state: item});
-      };
+        navigate("/QADesign/companydetails", { state: item });
+    };
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
@@ -51,8 +40,7 @@ export default function SliderFilter() {
                     lat: position.coords.latitude,
                     lon: position.coords.longitude,
                 });
-            },
-            // (error) => console.("Error getting location:", error)
+            }
         );
     }, []);
 
@@ -83,22 +71,16 @@ export default function SliderFilter() {
     const clearFilter = (filter) => {
         if (filter === "location") setLocation("");
         if (filter === "serviceType") setServiceTypeList([]);
-        if (filter === "rating") setRating("");
+        if (filter === "rating") setRating([]);
     };
-
-    // const filteredData = mockData.filter(
-    //     (item) =>
-    //         (!location || item.city.toLowerCase().includes(location.toLowerCase())) &&
-    //         (serviceType === "" || serviceTypeList.includes(item.service)) &&
-    //         (!rating || item.rating === Number(rating))
-    // );
 
     const filteredData = mockData.filter(
         (item) =>
             (!location || item.city.toLowerCase().includes(location.toLowerCase())) &&
             (serviceTypeList.length === 0 || serviceTypeList.includes(item.service)) &&
-            (!rating || item.rating === Number(rating))
+            (rating.length === 0 || rating.includes(item.rating)) // Now properly checks numbers
     );
+
     return (
         <div className="container">
             {/* Search Filters */}
@@ -123,20 +105,18 @@ export default function SliderFilter() {
                     {services.map((service) => (
                         <div key={service}>
                             <input
-                                // ref={serviceTypeRef}
                                 type="checkbox"
                                 id={service}
                                 name="serviceType"
                                 value={service}
-                                onChange={
-                                    (e) => {
-                                        let value = e.target.value;
-                                        setServiceTypeList((prevList) =>
-                                            prevList.includes(value)
-                                                ? prevList.filter((item) => item !== value)
-                                                : [...prevList, value]
-                                        );
-                                    }}
+                                onChange={(e) => {
+                                    let value = e.target.value;
+                                    setServiceTypeList((prevList) =>
+                                        prevList.includes(value)
+                                            ? prevList.filter((item) => item !== value)
+                                            : [...prevList, value]
+                                    );
+                                }}
                                 checked={serviceTypeList.includes(service)}
                             />
                             <label htmlFor={service}>{service}</label>
@@ -152,59 +132,59 @@ export default function SliderFilter() {
                                 type="checkbox"
                                 name="rating"
                                 value={num}
-                                onChange={(e) => setRating(e.target.value)}
-                                checked={rating === String(num)}
+                                onChange={(e) => {
+                                    let value = Number(e.target.value); // Convert to number
+                                    setRating((prevList) =>
+                                        prevList.includes(value)
+                                            ? prevList.filter((item) => item !== value)
+                                            : [...prevList, value]
+                                    );
+                                }}
+                                checked={rating.includes(num)}
                                 className="mr-2"
                             />
                             {num} Stars
                         </label>
                     ))}
                 </div>
-
-                {/*<button className="button">Search</button>*/}
             </div>
-
 
             {/* Results Section */}
             <div className="results">
-                {/* Selected Filters */}
                 <div className="selected-filters">
-                    {location && <div className="filters" style={{ backgroundColor: "grey" }}><button onClick={() => clearFilter("location")}>✖</button> {location}</div>}
-                    {
-                        serviceTypeList.length >0 &&
-                        (
-                            serviceTypeList.map((item)=>
-                                <div key={item} className="filters">
-                                    <button onClick={() => clearFilter("serviceType")}>
-                                        ✖
-                                    </button>
-                                    {item}</div>
-                            )
-                        )
-                    }
-                    {rating && <div className="filters"><button onClick={() => clearFilter("rating")}>✖</button> {rating} Stars</div>}
+                    {location && <div className="filters"><button onClick={() => clearFilter("location")}>✖</button> {location}</div>}
+                    {serviceTypeList.map((item) => (
+                        <div key={item} className="filters">
+                            <button onClick={() => clearFilter("serviceType")}>✖</button> {item}
+                        </div>
+                    ))}
+                    {rating.map((item) => (
+                        <div key={item} className="filters">
+                            <button onClick={() => clearFilter("rating")}>✖</button> {item}
+                        </div>
+                    ))}
                 </div>
+
                 <h2>Available Services</h2>
                 {filteredData.length === 0 ? (
                     <p>No services found.</p>
                 ) : (
                     filteredData.map((item) => (
-                        <div key={item.id} className="result-card" onClick={()=>handleNavigate(item.company)}>
+                        <div key={item.id} className="result-card" onClick={() => handleNavigate(item.company)}>
                             {/* Left: Image */}
                             <div className="result-card__image">
                                 <img src={item.image} alt={item.service} />
                             </div>
 
-                            {/* Middle: Content */}
                             <div className="result-card__content">
                                 <h3>{item.company.companyName}</h3>
-                                <p>City: {item.company.description}</p>
+                                <p>City: {item.company.city}</p>
+                                <p>{item.company.description}</p>
                             </div>
 
-                            {/* Right: Buttons */}
                             <div className="result-card__actions">
-                            <p>Rating: {item.company.overallRatings} ⭐</p>
-                                <button className="save-btn" onClick={() => toggleSave(item.id)}>
+                                <p>Rating: {item.company.rating} ⭐</p>
+                                <button className="save-btn" onClick={() => setSaved((prev) => ({ ...prev, [item.id]: !prev[item.id] }))}>
                                     {saved[item.id] ? <SaveIcon size={20} color="#007bff" /> : <Save size={20} />}
                                 </button>
                                 <button className="connect-btn">Connect</button>
@@ -216,4 +196,5 @@ export default function SliderFilter() {
         </div>
     );
 }
+
 
