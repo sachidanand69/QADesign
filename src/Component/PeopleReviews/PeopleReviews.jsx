@@ -1,5 +1,5 @@
 import { Star, ThumbsUp, ThumbsDown } from "lucide-react";
-
+import "./PeopleReviews.css"
 const reviews = [
   {
     id: 1,
@@ -50,43 +50,41 @@ const reviews = [
 const ReviewCard = ({ review }) => {
   return (
     <>
-      {/* Header - Profile Image, Name, Date, and Rating */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "8px" }}>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <img
-            src={review.profileImage}
-            alt={review.name}
-            style={{ width: "40px", height: "40px", borderRadius: "50%", marginRight: "12px", objectFit: "cover" }}
-          />
-          <div>
-            <h3 style={{ fontWeight: "bold", margin: 0 }}>{review.name}</h3>
-            <span style={{ color: "#777", fontSize: "14px" }}>{review.date}</span>
+      <div className="review-card">
+        {/* Header - Profile Image, Name, Date, and Rating */}
+        <div className="review-header">
+          <div className="review-user">
+            <img src={review.profileImage} alt={review.name} className="profile-image" />
+            <div>
+              <h3 className="review-name">{review.name}</h3>
+              <span className="review-date">{review.date}</span>
+            </div>
+          </div>
+
+          {/* Star Ratings on the Right */}
+          <div className="review-stars">
+            {[...Array(review.rating)].map((_, i) => (
+              <Star key={i} className="star-icon" fill="currentColor" />
+            ))}
           </div>
         </div>
 
-        {/* Star Ratings on the Right */}
-        <div style={{ display: "flex", gap: "4px" }}>
-          {[...Array(review.rating)].map((_, i) => (
-            <Star key={i} style={{ color: "#FFD700" }} fill="currentColor" />
-          ))}
+        <p className="review-location">Review on: {review.location}</p>
+        <p className="review-text">{review.text}</p>
+
+        {/* Like & Dislike Buttons */}
+        <div className="review-actions">
+          <button className="action-button">
+            <ThumbsUp className="icon" /> {review.likes}
+          </button>
+          <button className="action-button">
+            <ThumbsDown className="icon" /> {review.dislikes}
+          </button>
         </div>
+
+        {/* Divider */}
+        <hr className="divider" />
       </div>
-
-      <p style={{ color: "#555", fontSize: "14px", margin: "4px 0" }}>Review on: {review.location}</p>
-      <p style={{ color: "#555", fontSize: "14px" }}>{review.text}</p>
-
-      {/* Like & Dislike Buttons */}
-      <div style={{ display: "flex", gap: "16px", marginTop: "8px" }}>
-        <button style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center" }}>
-          <ThumbsUp style={{ width: "16px", height: "16px", marginRight: "4px" }} /> {review.likes}
-        </button>
-        <button style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center" }}>
-          <ThumbsDown style={{ width: "16px", height: "16px", marginRight: "4px" }} /> {review.dislikes}
-        </button>
-      </div>
-
-      {/* Divider */}
-      <hr style={{ margin: "16px 0", border: "0.5px solid #ddd" }} />
     </>
   );
 };

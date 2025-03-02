@@ -3,7 +3,6 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
-        {/* Left Section - About */}
         <div className="footer-section">
           <h2>VisaBoard</h2>
           <p>
@@ -22,7 +21,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Middle Section - Popular Categories */}
+        {/*Popular Categories */}
         <div className="footer-section">
           <h4>Popular Categories</h4>
           <ul>
@@ -34,7 +33,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Right Section - Company */}
+        {/*Company */}
         <div className="footer-section">
           <h4>Company</h4>
           <ul>
@@ -47,14 +46,14 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      {/* Bottom Section */}
+      {/* Copy write section*/}
       <div className="footer-bottom" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 20px" }}>
         {/* Left-aligned copyright text */}
         <p style={{ margin: 0, textAlign: "left", flex: "1" }}>
           © All rights reserved. Made by Quickassist Online Services Pvt. Ltd.
         </p>
 
-        {/* Right-aligned payment logos */}
+        {/*logos */}
         <div className="payment-methods" style={{ flex: "1", display: "flex", justifyContent: "flex-start", marginLeft:"30%"}}>
           <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
             <img src="./src/assets/Images/visa.png" alt="Visa" style={{ width: "60px", height: "auto" }} />

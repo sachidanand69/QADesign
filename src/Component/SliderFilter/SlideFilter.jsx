@@ -24,9 +24,10 @@ export default function SliderFilter() {
     const [location, setLocation] = useState("");
     const [distance, setDistance] = useState("");
     const [serviceTypeList, setServiceTypeList] = useState([]);
-    const [rating, setRating] = useState([]); // Ensure this stores numbers
+    const [rating, setRating] = useState([]);
     const [userCoords, setUserCoords] = useState(null);
     const [saved, setSaved] = useState({});
+    const ratingRanges = [[1, 2], [2, 3], [3, 4], [4, 5],[5,6]];
 
     const navigate = useNavigate();
     const handleNavigate = (item) => {
@@ -45,7 +46,7 @@ export default function SliderFilter() {
     }, []);
 
     function calculateDistance(lat1, lon1, lat2, lon2) {
-        const R = 3958.8; // Radius of Earth in miles
+        const R = 3958.8;
         const dLat = ((lat2 - lat1) * Math.PI) / 180;
         const dLon = ((lon2 - lon1) * Math.PI) / 180;
         const a =
@@ -78,7 +79,7 @@ export default function SliderFilter() {
         (item) =>
             (!location || item.city.toLowerCase().includes(location.toLowerCase())) &&
             (serviceTypeList.length === 0 || serviceTypeList.includes(item.service)) &&
-            (rating.length === 0 || rating.includes(item.rating)) // Now properly checks numbers
+            (rating.length === 0 || rating.some(range => item.rating >= range[0] && item.rating < range[1])) // Now properly checks numbers
     );
 
     return (
@@ -126,24 +127,24 @@ export default function SliderFilter() {
 
                 <h3>Select Rating:</h3>
                 <div className="radio-group vertical">
-                    {[1, 2, 3, 4, 5].map((num) => (
-                        <label key={num} className="block mt-2">
-                            <input
-                                type="checkbox"
-                                name="rating"
-                                value={num}
-                                onChange={(e) => {
-                                    let value = Number(e.target.value); // Convert to number
-                                    setRating((prevList) =>
-                                        prevList.includes(value)
-                                            ? prevList.filter((item) => item !== value)
-                                            : [...prevList, value]
-                                    );
-                                }}
-                                checked={rating.includes(num)}
-                                className="mr-2"
-                            />
-                            {num} Stars
+                    {ratingRanges.map((range, index) => (
+                        <label key={index} className="block mt-2">
+                        <input
+                        type="checkbox"
+                        name="rating"
+                        value={JSON.stringify(range)}
+                        onChange={(e) => {
+                            let value = JSON.parse(e.target.value); 
+                            setRating((prevList) =>
+                                prevList.some((r) => r[0] === value[0] && r[1] === value[1])
+                                    ? prevList.filter((r) => r[0] !== value[0] || r[1] !== value[1])
+                                    : [...prevList, value]
+                            );
+                        }}
+                        checked={rating.some((r) => r[0] === range[0] && r[1] === range[1])}
+                        className="mr-2"
+                    />
+                    {range[0]} ⭐
                         </label>
                     ))}
                 </div>
@@ -158,9 +159,12 @@ export default function SliderFilter() {
                             <button onClick={() => clearFilter("serviceType")}>✖</button> {item}
                         </div>
                     ))}
-                    {rating.map((item) => (
-                        <div key={item} className="filters">
-                            <button onClick={() => clearFilter("rating")}>✖</button> {item}
+                    {rating.map((range, index) => (
+                        <div key={index} className="filters">
+                            <button onClick={() => setRating((prev) => prev.filter((r) => r[0] !== range[0] || r[1] !== range[1]))}>
+                                ✖
+                            </button>
+                            {range[0]} ⭐
                         </div>
                     ))}
                 </div>
@@ -177,16 +181,16 @@ export default function SliderFilter() {
                             </div>
 
                             <div className="result-card__content" onClick={() => handleNavigate(item.company)} style={{cursor:"pointer"}}>
-                                <h3 >{item.company.companyName}</h3>
+                                <h3>{item.company.companyName}</h3>
                                 <p>City: {item.company.city}</p>
                                 <p>{item.company.description}</p>
                             </div>
 
                             <div className="result-card__actions">
-                                <p>Rating: {item.company.rating} ⭐</p>
-                                <button className="save-btn" onClick={() => setSaved((prev) => ({ ...prev, [item.id]: !prev[item.id] }))}>
+                            <button className="save-btn" onClick={() => setSaved((prev) => ({ ...prev, [item.id]: !prev[item.id] }))}>
                                     {saved[item.id] ? <SaveIcon size={20} color="#007bff" /> : <Save size={20} />}
                                 </button>
+                                <p>{item.company.rating} ⭐</p>
                                 <button className="connect-btn">Connect</button>
                             </div>
                         </div>

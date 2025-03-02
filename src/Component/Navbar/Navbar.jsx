@@ -9,14 +9,14 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="container">
-        {/* Hamburger Menu (for mobile) */}
+        {/* Hamburger Menu for Mobile*/}
         <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <div className="bar"></div>
           <div className="bar"></div>
           <div className="bar"></div>
         </div>
 
-        {/* Centered Navigation Links */}
+        {/*Navigations menu*/}
         <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
           <li><a href="#">Home</a></li>
           <li className="dropdown">
@@ -28,8 +28,9 @@ const Navbar = () => {
         
         {/* Right Side Profile Logo and Button */}
         <div className="profile-section">
-          <img src="#" alt="Profile" className="profile-icon" />
-          <button className="join-button">Join Our Network</button>
+          <img src="./src/assets/Images/profileicon.png" alt="Profile" className="profile-icon" />
+          <button className="join-button"><span style={{ fontSize: "20px", fontWeight: "bold", display: "inline-block", width: "32px", height: "32px", textAlign: "center" }}>+</span>
+          Join Our Network</button>
         </div>
       </div>
     </nav>
