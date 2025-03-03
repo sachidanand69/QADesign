@@ -169,7 +169,6 @@ export default function SliderFilter() {
                     ))}
                 </div>
 
-                <h2>Available Services</h2>
                 {filteredData.length === 0 ? (
                     <p>No services found.</p>
                 ) : (

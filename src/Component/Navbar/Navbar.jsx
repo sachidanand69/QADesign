@@ -18,7 +18,7 @@ const Navbar = () => {
 
         {/*Navigations menu*/}
         <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
-          <li><a href="#">Home</a></li>
+          <li><a href="/QADesign/slidefilter">Home</a></li>
           <li className="dropdown">
             <Dropdowns />
           </li>
