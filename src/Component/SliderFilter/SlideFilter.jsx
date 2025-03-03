@@ -45,6 +45,10 @@ export default function SliderFilter() {
         );
     }, []);
 
+    const removeItem = (value) => {
+        setServiceTypeList(prevItems => prevItems.filter(item => item !== value));
+    }
+
     function calculateDistance(lat1, lon1, lat2, lon2) {
         const R = 3958.8;
         const dLat = ((lat2 - lat1) * Math.PI) / 180;
@@ -156,7 +160,7 @@ export default function SliderFilter() {
                     {location && <div className="filters"><button onClick={() => clearFilter("location")}>✖</button> {location}</div>}
                     {serviceTypeList.map((item) => (
                         <div key={item} className="filters">
-                            <button onClick={() => clearFilter("serviceType")}>✖</button> {item}
+                            <button onClick={() => removeItem(item)}>✖</button> {item}
                         </div>
                     ))}
                     {rating.map((range, index) => (
