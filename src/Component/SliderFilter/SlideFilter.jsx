@@ -75,8 +75,8 @@ export default function SliderFilter() {
 
     const clearFilter = (filter) => {
         if (filter === "location") setLocation("");
-        if (filter === "serviceType") setServiceTypeList([]);
-        if (filter === "rating") setRating([]);
+        // if (filter === "serviceType") setServiceTypeList([]);
+        // if (filter === "rating") setRating([]);
     };
 
     const filteredData = mockData.filter(
